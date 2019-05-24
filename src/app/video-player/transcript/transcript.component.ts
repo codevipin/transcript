@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-transcript',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transcript.component.sass']
 })
 export class TranscriptComponent implements OnInit {
-
+  @Input() transcript; 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.transcript)
   }
 
 }
