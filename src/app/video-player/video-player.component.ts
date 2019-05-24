@@ -12,10 +12,10 @@ export class VideoPlayerComponent implements OnInit {
 
   @ViewChild('videoPlayer') videoplayer: ElementRef;
 
-  id:string = '4d79041e-f25f-421d-9e5f-3462459b9934';
+  // id:string = '4d79041e-f25f-421d-9e5f-3462459b9934';
   videoUrl:string;
   playerPause:boolean = true
-  transcripts;
+  transcripts:any;
 
   constructor(
     private router: Router,
@@ -24,11 +24,16 @@ export class VideoPlayerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.router.navigate([''], { queryParams: { id:this.id } });
+    //this.router.navigate([''], { queryParams: { id:this.id } });
     // Although the id is hard-coded in this case and we could directly fetch the data,
     // but normally in our we have to get it from the query params,thence I am doing this
+
     this.route.queryParams
     .subscribe(params => {
+      if(!params.id) {
+        alert("id is not found in query param")
+        return;
+      }
       this.videoUrl = this.playerMetadata.getVideoUrl(params.id);
       this.playerMetadata.getTranscript(params.id)
       .then(response => {
