@@ -13,12 +13,60 @@
         line-height: 28px
     
     .video
+        position: relative
         video
             background: #000000
             box-shadow: 0 0 8px 0 rgba(0,0,0,0.30)
             border-radius: 4px
+        .video-overlay
+            top: 0
+            right: 0
+            bottom: 0
+            left: 0
+            position: absolute
+            width: 400px
+            margin: 0 auto
+            border-radius: 4px
+            .play-btn
+                position: relative
+                .btn
+                    width: 40px
+                    height: 40px
+                    left: 0
+                    right: 0
+                    margin: 0 auto
+                    padding: 10px
+                    cursor: pointer
+                    position: absolute
+                    border-radius: 4px
+                    background-color: #646791
+                    transform: translateY(135%)
+                    .fa-play
+                        color: #ffffff
+                        font-size: 20px
+                        transform: translate(0, 50%)
 
 $breakpoint-tablet: 768px;
+$breakpoint-mobile: 640px;
 @media (max-width: $breakpoint-tablet)
-    .app-main
-        margin: 20vh 15vh
+    .video-player
+        margin: 10vh
+
+@media (max-width: $breakpoint-mobile)
+    .video-player
+        margin: 2vh
+        .video
+            position: relative
+            video
+                width: 220px
+            .video-overlay
+                width: 220px
+                .play-btn
+                    position: relative
+                    .btn
+                        width: 20px
+                        height: 20px
+                        .fa-play
+                            font-size: 15px
+                            transform: none
+

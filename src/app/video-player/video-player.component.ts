@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { PlayerMetadataService } from '../services/player-metadata.service';
-import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-video-player',
@@ -11,9 +10,13 @@ import { UtilsService } from '../services/utils.service';
 })
 export class VideoPlayerComponent implements OnInit {
 
+  @ViewChild('videoPlayer') videoplayer: ElementRef;
+
   id:string = '4d79041e-f25f-421d-9e5f-3462459b9934';
   videoUrl:string;
-  transcripts:[];
+  playerPause:boolean = true
+  transcripts;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -28,19 +31,26 @@ export class VideoPlayerComponent implements OnInit {
     .subscribe(params => {
       this.videoUrl = this.playerMetadata.getVideoUrl(params.id);
       this.playerMetadata.getTranscript(params.id)
-      .toPromise()
       .then(response => {
-        const data = response.json()
-        const sortDataOnTime = UtilsService.sortOnTime(data);
-        
-        this.transcripts = UtilsService.combineUtterance(sortDataOnTime);
-        console.log(this.transcripts)
-
+        console.log(response);
+        this.transcripts = response;
       })
       .catch(error => {
-        console.log("error fetching the transcipt for id", params.id);
+        alert("error fetching the transcipt for id "+ params.id);
       })
     })
+  }
+
+  playVideo() {
+    console.log(this.videoplayer)
+    if(this.videoplayer.nativeElement.paused) {
+      this.videoplayer.nativeElement.play()
+      this.playerPause = false
+    } else {
+      this.videoplayer.nativeElement.pause();
+      this.playerPause = true
+    }
+
   }
 
 }
