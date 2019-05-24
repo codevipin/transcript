@@ -10,7 +10,7 @@ export class TranscriptComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.transcript)
+    // console.log(this.transcript)
   }
 
 }

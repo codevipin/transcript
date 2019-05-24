@@ -4,7 +4,6 @@
   </div>
   <div class="chat">
     <p class="chat-name">{{ transcript.speaker }}</p>
-    <div class="chat-text">{{ transcript.snippet }}</div>
-    <div class="chat-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet vel erat vitae tincidunt. Mauris ut convallis massa. Suspendisse vehicula elit at imperdiet vulputate. Quisque a tempus ligula, eu commodo metus. Integer rhoncus tristique nisi id commodo. Proin pellentesque placerat leo, non tristique libero blandit sit amet. Vestibulum suscipit odio non tincidunt ultrices.</div>
+    <div class="chat-text" *ngFor="let chat of transcript.snippetArr">{{ chat.snippet }}</div>
   </div>
 </div>

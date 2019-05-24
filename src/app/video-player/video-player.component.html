@@ -7,8 +7,9 @@
     </video>
   </section>
   <section class="transcripts" *ngIf="transcripts">
-    <div class="transcript" *ngFor="let transcript of transcripts">
-        <app-transcript [transcript]="transcript"></app-transcript>
-    </div>
+    <app-transcript
+      *ngFor="let transcript of transcripts"
+      [transcript]="transcript"
+    ></app-transcript>
   </section>
 </div>
